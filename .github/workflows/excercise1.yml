@@ -1,0 +1,5 @@
+name: "Compile Test on Push and Pull Request"
+on:
+  push:
+  pull_request:
+    
