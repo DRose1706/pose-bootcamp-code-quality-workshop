@@ -2,4 +2,21 @@ name: "Compile Test on Push and Pull Request"
 on:
   push:
   pull_request:
+jobs:
+  chechout-and-compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure the build
+        run: cmake -S . -B build
+
+      - name: build the build
+        run: cmake --build build -j
+        
+      - name: Run Test
+        run: ./build/address_book_tests
+
+  
     
