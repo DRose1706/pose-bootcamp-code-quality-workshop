@@ -38,8 +38,22 @@ TEST_CASE("check for name exceptions") {
 	CHECK(ab.has_entry("Jane Doe"));
 }
 
-TEST_CASE("check ") {
+TEST_CASE("synchronize with file") {
 	address_book ab;
-    //Check when non-existent name is removed
+	file_synchronization_provider provider{"/home/user/pose-bootcamp-code-quality-workshop/test"}; 
+
+	ab.add_entry("Jane Doe");
+	REQUIRE(ab.has_entry("Jane Doe"));
+    
+	ab.synchronize(provider);
+
+	ab.remove_entry("Jane Doe");
+	REQUIRE_FALSE(ab.has_entry("Jane Doe"));
+
+	ab.synchronize(provider);
+
+	CHECK(ab.has_entry("Jane Doe"));
+	
+
 	
 }
