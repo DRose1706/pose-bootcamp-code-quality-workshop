@@ -28,7 +28,7 @@ TEST_CASE("check for name exceptions") {
 	CHECK_THROWS(ab.add_entry(""));
 
 	//Check for Error when over 100 character entry is added
-	CHECK_THROWS(ab.add_entry("A" * 101));
+	CHECK_THROWS(ab.add_entry(std::string(101,'A')));
 
 	ab.add_entry("Jane Doe");
 	REQUIRE(ab.has_entry("Jane Doe"));
