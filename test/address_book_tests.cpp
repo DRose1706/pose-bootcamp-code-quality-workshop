@@ -41,19 +41,21 @@ TEST_CASE("check for name exceptions") {
 TEST_CASE("synchronize with file") {
 	address_book ab;
 	file_synchronization_provider provider{"/home/user/pose-bootcamp-code-quality-workshop/test"}; 
-
+    
+	//Add name, mandatory to continue
 	ab.add_entry("Jane Doe");
 	REQUIRE(ab.has_entry("Jane Doe"));
     
+	//Synchronize name to file
 	ab.synchronize(provider);
-
+    
+	//Remove name, mandatory to continue
 	ab.remove_entry("Jane Doe");
 	REQUIRE_FALSE(ab.has_entry("Jane Doe"));
-
+    
+	//Synchronize back
 	ab.synchronize(provider);
 
+    //Check if name is synchronized
 	CHECK(ab.has_entry("Jane Doe"));
-	
-
-	
 }
